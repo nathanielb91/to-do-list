@@ -1,0 +1,11 @@
+nav {
+  @apply bg-slate-500 text-white p-4;
+}
+
+a {
+  @apply no-underline text-white;
+}
+
+.mat-tab-active {
+  @apply font-bold;
+}
