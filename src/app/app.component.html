@@ -1,5 +1,14 @@
-<nav mat-tab-nav-bar>
-  <a mat-tab-link routerLink="/todo" routerLinkActive="mat-tab-active">My To-Do List</a>
+<mat-toolbar>
+  <button *ngIf="isLoggedIn" mat-button [matMenuTriggerFor]="menu">Menu</button>
+  <!-- *ngIf="isLoggedIn" -->
+  <h2>{{ title }}</h2>
+  <!-- <a mat-tab-link routerLink="/todo" routerLinkActive="mat-tab-active">My To-Do List</a>
   <a mat-tab-link routerLink="/explorer" routerLinkActive="mat-tab-active">My Explorer</a>
-</nav>
+  <a mat-tab-link routerLink="/login" routerLinkActive="mat-tab-active">Logout</a> -->
+</mat-toolbar>
+<mat-menu #menu="matMenu">
+  <button mat-menu-item [routerLink]="['/todo']">My To-Do List</button>
+  <button mat-menu-item [routerLink]="['/explorer']">My Explorer</button>
+  <button mat-menu-item (click)="logout()">Logout</button>
+</mat-menu>
 <router-outlet></router-outlet>

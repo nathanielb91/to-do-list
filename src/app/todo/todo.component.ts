@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { TodoService } from '../shared/services/todo.service';
+import { TodoService } from '../shared/services/todo/todo.service';
 import { MatDialog } from '@angular/material/dialog';
 import { AddTodoDialogComponent } from '../add-todo-dialog/add-todo-dialog.component';
 
