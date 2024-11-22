@@ -1,12 +1,4 @@
-a {
-  @apply no-underline text-white;
-}
-
-.mat-tab-active {
-  @apply font-bold;
-}
-
-.mat-toolbar {
+mat-toolbar {
   @apply bg-gradient-to-r from-custom-gray to-custom-blue;
 }
 

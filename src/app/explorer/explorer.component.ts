@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ExplorerService } from '../shared/services/explorer.service';
+import { ExplorerService } from '../shared/services/explorer/explorer.service';
 
 @Component({
   selector: 'app-explorer',
@@ -27,7 +27,7 @@ export class ExplorerComponent {
         node.expanded = true;
       });
     } else {
-      // Simply toggle if children are already loaded
+      // Toggle if children are already loaded
       node.expanded = !node.expanded;
     }
   }

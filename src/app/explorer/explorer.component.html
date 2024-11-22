@@ -4,7 +4,7 @@
   <ul class="space-y-2">
     <ng-container *ngFor="let node of treeData">
       <li>
-        <div 
+        <div
           class="flex items-center p-2 hover:bg-white/15 rounded cursor-pointer"
           (click)="toggleNode(node)"
         >
@@ -14,7 +14,6 @@
           <span>{{node.name}}</span>
         </div>
         
-        <!-- Children -->
         <ul *ngIf="node.expanded && node.children" class="ml-8 space-y-2 mt-2">
           <li *ngFor="let child of node.children">
             <div 
@@ -27,7 +26,6 @@
               <span>{{child.name}}</span>
             </div>
             
-            <!-- Nested Children -->
             <ul *ngIf="child.expanded && child.children" class="ml-8 space-y-2 mt-2">
               <li *ngFor="let grandChild of child.children">
                 <div 

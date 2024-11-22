@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { delay } from 'rxjs/operators';
-import { Node } from '../models/tree-node.model';
+import { Node } from '../../models/tree-node.model';
 
 type ExplorerData = {
   [key: string]: Node[];

@@ -1,29 +1,92 @@
-import { TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
+import { BehaviorSubject } from 'rxjs';
 import { AppComponent } from './app.component';
+import { AuthService } from './auth/auth.service';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatMenuModule } from '@angular/material/menu';
+import { AppRoutingModule } from './app-routing.module';
+import { By } from '@angular/platform-browser';
 
 describe('AppComponent', () => {
-  beforeEach(() => TestBed.configureTestingModule({
-    imports: [RouterTestingModule],
-    declarations: [AppComponent]
-  }));
+  let component: AppComponent;
+  let fixture: ComponentFixture<AppComponent>;
+  let authService: jasmine.SpyObj<AuthService>;
+  let router: jasmine.SpyObj<Router>;
+  let isLoggedInSubject: BehaviorSubject<boolean>;
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
+  beforeEach(async () => {
+    isLoggedInSubject = new BehaviorSubject<boolean>(false);
+
+    authService = jasmine.createSpyObj('AuthService', ['logout'], {
+      isLoggedIn: isLoggedInSubject
+    });
+    router = jasmine.createSpyObj('Router', ['navigate']);
+
+    await TestBed.configureTestingModule({
+      declarations: [ AppComponent ],
+      imports: [
+        RouterTestingModule.withRoutes([]),
+        MatToolbarModule,
+        MatIconModule,
+        MatButtonModule,
+        BrowserAnimationsModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatMenuModule,
+        AppRoutingModule
+      ],
+      providers: [
+        { provide: AuthService, useValue: authService },
+      ]
+    })
+    .compileComponents();
   });
 
-  it(`should have as title 'quantellia-assessment'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('quantellia-assessment');
-  });
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
+  beforeEach(() => {
+    fixture = TestBed.createComponent(AppComponent);
+    component = fixture.componentInstance;
     fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('quantellia-assessment app is running!');
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+
+  it('should initialize with isLoggedIn as false', () => {
+    expect(component.isLoggedIn).toBeFalse();
+  });
+
+  it('should update isLoggedIn when auth status changes', () => {
+    expect(component.isLoggedIn).toBeFalse();
+
+    isLoggedInSubject.next(true);
+    fixture.detectChanges();
+    expect(component.isLoggedIn).toBeTrue();
+
+    isLoggedInSubject.next(false);
+    fixture.detectChanges();
+    expect(component.isLoggedIn).toBeFalse();
+  });
+
+  it('should show the menu when logged in', () => {
+    isLoggedInSubject.next(true);
+    fixture.detectChanges();
+
+    const button = fixture.debugElement.query(By.css('[data-testid="menuBtn"]'));
+    expect(button).not.toBeNull();
+  });
+
+  it('should hide the menu when logged out', () => {
+    isLoggedInSubject.next(false);
+    fixture.detectChanges();
+
+    const button = fixture.debugElement.query(By.css('[data-testid="menuBtn"]'));
+    expect(button).toBeNull();
   });
 });

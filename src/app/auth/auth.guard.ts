@@ -7,17 +7,14 @@ export const authGuard = () => {
   const authService = inject(AuthService);
   const router = inject(Router);
 
-  console.log('Auth Guard triggered'); // Debug log
-
-  // Use the observable and return a boolean
   return authService.isLoggedIn.pipe(
-    first(), // Complete the observable after the first value
+    first(),
     map((isAuthenticated) => {
       if (isAuthenticated) {
-        return true; // Allow access
+        return true;
       } else {
         router.navigate(['/login']);
-        return false; // Deny access
+        return false;
       }
     })
   );
