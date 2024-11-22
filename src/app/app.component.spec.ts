@@ -1,16 +1,13 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Router } from '@angular/router';
-import { RouterTestingModule } from '@angular/router/testing';
+import { provideRouter, Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { AppComponent } from './app.component';
 import { AuthService } from './auth/auth.service';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatMenuModule } from '@angular/material/menu';
-import { AppRoutingModule } from './app-routing.module';
 import { By } from '@angular/platform-browser';
 
 describe('AppComponent', () => {
@@ -29,19 +26,17 @@ describe('AppComponent', () => {
     router = jasmine.createSpyObj('Router', ['navigate']);
 
     await TestBed.configureTestingModule({
-      declarations: [ AppComponent ],
       imports: [
-        RouterTestingModule.withRoutes([]),
         MatToolbarModule,
         MatIconModule,
         MatButtonModule,
-        BrowserAnimationsModule,
         FormsModule,
         ReactiveFormsModule,
         MatMenuModule,
-        AppRoutingModule
+        AppComponent
       ],
       providers: [
+        provideRouter([]),
         { provide: AuthService, useValue: authService },
       ]
     })

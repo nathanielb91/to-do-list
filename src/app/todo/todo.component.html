@@ -11,10 +11,10 @@
       </button>
     </div>
     <mat-list>
-      <mat-list-item
-        *ngFor="let todo of todos$ | async"
-        class="bg-gray-50 hover:bg-gray-500 rounded-lg px-4 py-2 shadow-sm transition flex items-center justify-between"
-      >
+      @for (todo of todos$ | async; track todo.id) {
+        <mat-list-item
+          class="bg-gray-50 hover:bg-gray-500 rounded-lg px-4 py-2 shadow-sm transition flex items-center justify-between"
+        >
         <mat-checkbox
           [checked]="todo.completed"
           (change)="toggleCompleted(todo.id)"
@@ -22,7 +22,8 @@
         >
           <span class="text-white font-inter text-xl">{{ todo.description }}</span>
         </mat-checkbox>
-      </mat-list-item>
+        </mat-list-item>
+      }
     </mat-list>
   </div>
 </div>

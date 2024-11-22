@@ -1,9 +1,14 @@
 import { Component } from '@angular/core';
 import { ExplorerService } from '../shared/services/explorer/explorer.service';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-explorer',
-  templateUrl: './explorer.component.html'
+  templateUrl: './explorer.component.html',
+  standalone: true,
+  imports: [
+    MatIconModule
+  ]
 })
 export class ExplorerComponent {
   treeData: any[] = [];
@@ -11,7 +16,6 @@ export class ExplorerComponent {
   constructor(private explorerService: ExplorerService) {}
 
   ngOnInit() {
-    // Load root level data
     this.explorerService.getNodes('root').subscribe(data => {
       this.treeData = data;
     });
@@ -21,13 +25,11 @@ export class ExplorerComponent {
     if (!node.isFolder) return;
     
     if (!node.children && !node.expanded) {
-      // Load children only if they haven't been loaded yet
       this.explorerService.getNodes(node.id).subscribe(data => {
         node.children = data;
         node.expanded = true;
       });
     } else {
-      // Toggle if children are already loaded
       node.expanded = !node.expanded;
     }
   }

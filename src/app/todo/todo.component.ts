@@ -1,12 +1,25 @@
 import { Component } from '@angular/core';
+import { AsyncPipe } from '@angular/common';
 import { TodoService } from '../shared/services/todo/todo.service';
 import { MatDialog } from '@angular/material/dialog';
 import { AddTodoDialogComponent } from '../add-todo-dialog/add-todo-dialog.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatListModule } from '@angular/material/list';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-todo',
   templateUrl: './todo.component.html',
-  styleUrls: ['./todo.component.scss']
+  styleUrls: ['./todo.component.scss'],
+  standalone: true,
+  imports: [
+    AsyncPipe,
+    MatButtonModule,
+    MatListModule,
+    MatCheckboxModule,
+    MatIconModule
+  ]
 })
 export class TodoComponent {
 

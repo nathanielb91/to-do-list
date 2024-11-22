@@ -1,27 +1,100 @@
-# QuantelliaAssessment
+# Angular File Explorer and Todo Application
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.14.
+A modern Angular application demonstrating file system exploration and todo list management, built with Angular 17 and utilizing standalone components.
 
-## Development server
+## Features
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- **Dynamic File Explorer**
 
-## Code scaffolding
+  - Tree-like structure similar to Windows Explorer
+  - Dynamic expansion/collapse of folders
+  - Lazy loading of folder contents
+  - Visual distinction between files and folders
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- **Todo List Management**
 
-## Build
+  - Add/remove todo items
+  - Mark todos as complete/incomplete
+  - Automatic sorting (incomplete items first)
+  - Clean, modern Material Design interface
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- **Authentication**
+  - Route protection with auth guard
+  - Login/logout functionality
+  - Secure routing
 
-## Running unit tests
+## Technical Stack
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- Angular 17
+- Angular Material
+- Tailwind CSS
+- Standalone Components Architecture
+- RxJS for state management
 
-## Running end-to-end tests
+## Getting Started
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+### Prerequisites
 
-## Further help
+- Node.js (v16.x or higher)
+- npm (v8.x or higher)
+- Angular CLI (`npm install -g @angular/cli`)
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+### Installation
+
+1. Clone the repository:
+
+```bash
+git clone [repository-url]
+```
+
+2. Navigate to project directory:
+
+```bash
+cd [project-name]
+```
+
+3. Install dependencies:
+
+```bash
+npm install
+```
+
+### Running the Application
+
+```bash
+npm run start
+```
+
+**Important**: Use `npm run start` instead of `ng serve` to ensure proper Tailwind CSS compilation.
+
+The application will be available at `http://localhost:4200`
+
+### Running Tests
+
+```bash
+ng test
+```
+
+## Login Credentials
+
+For login credentials, use:
+
+- Username: user
+- Password: password
+
+## Implementation Details
+
+- Utilizes Angular 17's new control flow syntax (@if/@for)
+- Implements lazy loading for efficient resource management
+- Uses RxJS BehaviorSubjects for state management
+- Implements Material Design components with custom styling
+- Features responsive design with Tailwind CSS
+
+## Testing
+
+The application includes comprehensive unit tests for:
+
+- Components
+- Services
+- Guards
+- Dialogs

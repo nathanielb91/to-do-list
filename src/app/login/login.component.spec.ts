@@ -17,8 +17,10 @@ describe('LoginComponent', () => {
     router = jasmine.createSpyObj('Router', ['navigate']);
 
     await TestBed.configureTestingModule({
-      declarations: [ LoginComponent ],
-      imports: [ FormsModule ],
+      imports: [
+        FormsModule,
+        LoginComponent
+      ],
       providers: [
         { provide: AuthService, useValue: authService },
         { provide: Router, useValue: router }

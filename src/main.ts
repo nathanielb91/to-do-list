@@ -1,19 +1,22 @@
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { bootstrapApplication } from '@angular/platform-browser';
+import { AppComponent } from './app/app.component';
+import { provideRouter } from '@angular/router';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { routes } from './app/app.routes';
+import { MATERIAL_SANITY_CHECKS } from '@angular/material/core';
 
-import { AppModule } from './app/app.module';
-
-  const providers = [
+bootstrapApplication(AppComponent, {
+  providers: [
+    provideRouter(routes),
+    provideAnimations(),
     {
-      provide: 'MATERIAL_SANITY_CHECKS',
+      provide: MATERIAL_SANITY_CHECKS,
       useValue: {
         doctype: true,
         theme: true,
         version: true,
         typography: false,
       },
-    },
-  ];
-
-platformBrowserDynamic(providers).bootstrapModule(AppModule)
-  .catch(err => console.error(err));
-
+    }
+  ]
+}).catch(err => console.error(err));

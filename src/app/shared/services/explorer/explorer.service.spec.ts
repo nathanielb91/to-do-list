@@ -26,9 +26,9 @@ describe('ExplorerComponent', () => {
     explorerService.getNodes.and.returnValue(of(mockRootNodes));
 
     await TestBed.configureTestingModule({
-      declarations: [ ExplorerComponent ],
       imports: [
         MatIconModule,
+        ExplorerComponent
       ],
       providers: [
         { provide: ExplorerService, useValue: explorerService }

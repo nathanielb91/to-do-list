@@ -9,7 +9,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { BehaviorSubject, of } from 'rxjs';
 import { By } from '@angular/platform-browser';
 import { AddTodoDialogComponent } from '../add-todo-dialog/add-todo-dialog.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('TodoComponent', () => {
   let component: TodoComponent;
@@ -37,14 +36,13 @@ describe('TodoComponent', () => {
     dialog.open.and.returnValue(dialogRefSpyObj);
 
     await TestBed.configureTestingModule({
-      declarations: [ TodoComponent ],
       imports: [
         MatDialogModule,
         MatListModule,
         MatCheckboxModule,
         MatIconModule,
         MatButtonModule,
-        BrowserAnimationsModule
+        TodoComponent
       ],
       providers: [
         { provide: TodoService, useValue: todoService },

@@ -1,8 +1,10 @@
 <div class="flex flex-col min-h-screen bg-gradient-to-r from-custom-gray to-custom-blue">
   <mat-toolbar>
-    <button *ngIf="isLoggedIn" mat-button [matMenuTriggerFor]="menu" class="ml-auto" data-testid="menuBtn">
-      <mat-icon>menu</mat-icon>
-    </button>
+    @if (isLoggedIn) {
+      <button mat-button [matMenuTriggerFor]="menu" class="ml-auto" data-testid="menuBtn">
+        <mat-icon>menu</mat-icon>
+      </button>
+    }
   </mat-toolbar>
   <mat-menu #menu="matMenu">
     <button mat-menu-item [routerLink]="['/todo']">My To-Do List</button>

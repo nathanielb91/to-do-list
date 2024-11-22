@@ -36,9 +36,11 @@
         Login
         </button>
       </form>
-      <p *ngIf="errorMessage" class="text-red-500 text-sm text-center pt-6">
-        {{ errorMessage }}
-      </p>
+      @if (errorMessage) {
+        <p class="text-red-500 text-sm text-center pt-6">
+          {{ errorMessage }}
+        </p>
+      }
     </div>
   </div>
 </div>

@@ -2,7 +2,7 @@
   <div class="text-center text-white text-3xl font-inter font-bold mt-12 mb-24">File Explorer</div>
   
   <ul class="space-y-2">
-    <ng-container *ngFor="let node of treeData">
+    @for (node of treeData; track node.id) {
       <li>
         <div
           class="flex items-center p-2 hover:bg-white/15 rounded cursor-pointer"
@@ -14,34 +14,42 @@
           <span>{{node.name}}</span>
         </div>
         
-        <ul *ngIf="node.expanded && node.children" class="ml-8 space-y-2 mt-2">
-          <li *ngFor="let child of node.children">
-            <div 
-              class="flex items-center p-2 hover:bg-white/15 rounded cursor-pointer"
-              (click)="toggleNode(child)"
-            >
-              <mat-icon class="mr-2" [class.text-amber-500]="child.isFolder">
-                {{child.isFolder ? (child.expanded ? 'folder_open' : 'folder') : 'insert_drive_file'}}
-              </mat-icon>
-              <span>{{child.name}}</span>
-            </div>
-            
-            <ul *ngIf="child.expanded && child.children" class="ml-8 space-y-2 mt-2">
-              <li *ngFor="let grandChild of child.children">
+        @if (node.expanded && node.children) {
+          <ul class="ml-8 space-y-2 mt-2">
+            @for (child of node.children; track child.id) {
+              <li>
                 <div 
                   class="flex items-center p-2 hover:bg-white/15 rounded cursor-pointer"
-                  (click)="toggleNode(grandChild)"
+                  (click)="toggleNode(child)"
                 >
-                  <mat-icon class="mr-2" [class.text-amber-500]="grandChild.isFolder">
-                    {{grandChild.isFolder ? (grandChild.expanded ? 'folder_open' : 'folder') : 'insert_drive_file'}}
+                  <mat-icon class="mr-2" [class.text-amber-500]="child.isFolder">
+                    {{child.isFolder ? (child.expanded ? 'folder_open' : 'folder') : 'insert_drive_file'}}
                   </mat-icon>
-                  <span>{{grandChild.name}}</span>
+                  <span>{{child.name}}</span>
                 </div>
+                
+                @if (child.expanded && child.children) {
+                  <ul class="ml-8 space-y-2 mt-2">
+                    @for (grandChild of child.children; track grandChild.id) {
+                      <li>
+                        <div 
+                          class="flex items-center p-2 hover:bg-white/15 rounded cursor-pointer"
+                          (click)="toggleNode(grandChild)"
+                        >
+                          <mat-icon class="mr-2" [class.text-amber-500]="grandChild.isFolder">
+                            {{grandChild.isFolder ? (grandChild.expanded ? 'folder_open' : 'folder') : 'insert_drive_file'}}
+                          </mat-icon>
+                          <span>{{grandChild.name}}</span>
+                        </div>
+                      </li>
+                    }
+                  </ul>
+                }
               </li>
-            </ul>
-          </li>
-        </ul>
+            }
+          </ul>
+        }
       </li>
-    </ng-container>
+    }
   </ul>
 </div>

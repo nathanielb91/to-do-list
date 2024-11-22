@@ -1,9 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
-import { MatDialogRef, MatDialogModule } from '@angular/material/dialog';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
+import { MatDialogRef } from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AddTodoDialogComponent } from './add-todo-dialog.component';
 
@@ -16,21 +13,15 @@ describe('AddTodoDialogComponent', () => {
     dialogRef = jasmine.createSpyObj('MatDialogRef', ['close']);
 
     await TestBed.configureTestingModule({
-      declarations: [ AddTodoDialogComponent ],
       imports: [
-        ReactiveFormsModule,
-        MatDialogModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatButtonModule,
+        AddTodoDialogComponent,
         BrowserAnimationsModule
       ],
       providers: [
         FormBuilder,
         { provide: MatDialogRef, useValue: dialogRef }
       ]
-    })
-    .compileComponents();
+    }).compileComponents();
 
     fixture = TestBed.createComponent(AddTodoDialogComponent);
     component = fixture.componentInstance;
@@ -64,4 +55,9 @@ describe('AddTodoDialogComponent', () => {
     expect(descriptionControl?.hasError('required')).toBeFalse();
   });
 
+  it('should not close dialog when form is invalid', () => {
+    component.onAdd();
+    
+    expect(dialogRef.close).not.toHaveBeenCalled();
+  });
 });
