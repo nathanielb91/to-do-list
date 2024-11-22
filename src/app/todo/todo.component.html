@@ -1,13 +1,28 @@
-<div class="p-4">
-  <button mat-raised-button color="primary" (click)="addTodo()">Add</button>
-  <mat-list>
-    <mat-list-item *ngFor="let todo of todos$ | async">
-      <mat-checkbox
-        [checked]="todo.completed"
-        (change)="toggleCompleted(todo.id)"
+<div class="mt-20">
+  <div class="flex justify-center text-4xl font-inter font-bold text-custom-pink">To-Do List</div>
+  <div class="p-6 bg-white bg-opacity-15 shadow-lg rounded-lg max-w-lg mx-auto mt-28">
+    <div class="flex items-center justify-between">
+      <button
+        mat-button
+        (click)="addTodo()"
+        class="text-white ml-auto"
       >
-        {{ todo.description }}
-      </mat-checkbox>
-    </mat-list-item>
-  </mat-list>
+      <mat-icon>add</mat-icon>
+      </button>
+    </div>
+    <mat-list>
+      <mat-list-item
+        *ngFor="let todo of todos$ | async"
+        class="bg-gray-50 hover:bg-gray-500 rounded-lg px-4 py-2 shadow-sm transition flex items-center justify-between"
+      >
+        <mat-checkbox
+          [checked]="todo.completed"
+          (change)="toggleCompleted(todo.id)"
+          color="green"
+        >
+          <span class="text-white font-inter text-xl">{{ todo.description }}</span>
+        </mat-checkbox>
+      </mat-list-item>
+    </mat-list>
+  </div>
 </div>

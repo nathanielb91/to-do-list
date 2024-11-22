@@ -21,7 +21,14 @@ export class TodoComponent {
   }
 
   addTodo() {
-    const dialogRef = this.dialog.open(AddTodoDialogComponent, {width: '500px'});
+
+    const dialogConfig = {
+      width: '500px',
+      position: {
+        top: '30%',
+      },
+    };
+    const dialogRef = this.dialog.open(AddTodoDialogComponent, dialogConfig);
 
     dialogRef.afterClosed().subscribe((description) => {
       if (description) {

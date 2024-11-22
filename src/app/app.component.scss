@@ -1,11 +1,17 @@
-nav {
-  @apply bg-slate-500 text-white p-4;
-}
-
 a {
   @apply no-underline text-white;
 }
 
 .mat-tab-active {
   @apply font-bold;
+}
+
+.mat-toolbar {
+  @apply bg-gradient-to-r from-custom-gray to-custom-blue;
+}
+
+.mat-mdc-button.mat-unthemed {
+  color: white;
+  font-size: large;
+  transform: scale(1.5);
 }

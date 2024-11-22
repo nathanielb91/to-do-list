@@ -13,13 +13,16 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
+import { MatTreeModule } from '@angular/material/tree';
+import { MatIconModule } from '@angular/material/icon';
 
 import { TodoComponent } from './todo/todo.component';
 import { AddTodoDialogComponent } from './add-todo-dialog/add-todo-dialog.component';
 import { LoginComponent } from './login/login.component';
+import { ExplorerComponent } from './explorer/explorer.component';
 
 @NgModule({
-  declarations: [AppComponent, TodoComponent, AddTodoDialogComponent, LoginComponent],
+  declarations: [AppComponent, TodoComponent, AddTodoDialogComponent, LoginComponent, ExplorerComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -32,7 +35,9 @@ import { LoginComponent } from './login/login.component';
     FormsModule,
     ReactiveFormsModule,
     MatInputModule,
-    MatMenuModule
+    MatMenuModule,
+    MatTreeModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent],

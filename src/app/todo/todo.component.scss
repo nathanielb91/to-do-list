@@ -1,6 +1,4 @@
-mat-list {
-  @apply mt-4;
-}
-mat-list-item {
-  @apply mb-2;
+.mat-mdc-button.mat-unthemed {
+  color: white;
+  transform: scale(1.5);
 }

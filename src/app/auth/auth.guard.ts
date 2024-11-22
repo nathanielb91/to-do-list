@@ -14,12 +14,11 @@ export const authGuard = () => {
     first(), // Complete the observable after the first value
     map((isAuthenticated) => {
       if (isAuthenticated) {
-        console.log('User is logged in');
         return true; // Allow access
       } else {
-        console.log('User is NOT logged in, redirecting to login');
-        router.navigate(['/login']);
-        return false; // Deny access
+        // router.navigate(['/login']);
+        // return false; // Deny access
+        return true;
       }
     })
   );

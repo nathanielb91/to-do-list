@@ -12,7 +12,12 @@ export class TodoService {
   constructor() {
     const existingTodos = [
       { id: 1, description: 'Do laundry', completed: false },
-      { id: 2, description: 'Clean the kitchen', completed: true },
+      { id: 2, description: 'Call Mom', completed: false },
+      { id: 3, description: 'Rake leaves', completed: false },
+      { id: 4, description: 'Pick up dry cleaning', completed: false },
+      { id: 5, description: 'Mow the lawn', completed: true },
+      { id: 6, description: 'Clean the kitchen', completed: true },
+      { id: 7, description: 'Complete coding assessment', completed: true },
     ];
     this.todosSubject.next(existingTodos);
   }

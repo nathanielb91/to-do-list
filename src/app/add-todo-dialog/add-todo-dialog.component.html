@@ -1,13 +1,23 @@
-<h2>Add a To-Do item</h2>
-<mat-dialog-content>
-  <form [formGroup]="todoForm">
-    <mat-form-field>
-      <mat-label>Description</mat-label>
-      <input matInput formControlName="description" />
-    </mat-form-field>
-  </form>
-</mat-dialog-content>
-<mat-dialog-actions align="end">
-  <button mat-button (click)="onCancel()">Cancel</button>
-  <button mat-button (click)="onAdd()">Add</button>
-</mat-dialog-actions>
+<div class="p-4 bg-custom-blue rounded-lg shadow-lg">
+  <h2 class="text-2xl font-bold text-white text-center mb-6">Add a To-Do Item</h2>
+  <mat-dialog-content>
+    <form [formGroup]="todoForm">
+      <mat-form-field class="w-full">
+        <mat-label class="text-white">Description</mat-label>
+        <input
+          matInput
+          formControlName="description"
+          class="text-white"
+        />
+      </mat-form-field>
+    </form>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button class= "text-white font-bold" (click)="onCancel()">
+      Cancel
+    </button>
+    <button mat-button class="text-white font-bold" (click)="onAdd()">
+      Add
+    </button>
+  </mat-dialog-actions>
+</div>

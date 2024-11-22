@@ -1,14 +1,17 @@
-<mat-toolbar>
-  <button *ngIf="isLoggedIn" mat-button [matMenuTriggerFor]="menu">Menu</button>
-  <!-- *ngIf="isLoggedIn" -->
-  <h2>{{ title }}</h2>
-  <!-- <a mat-tab-link routerLink="/todo" routerLinkActive="mat-tab-active">My To-Do List</a>
-  <a mat-tab-link routerLink="/explorer" routerLinkActive="mat-tab-active">My Explorer</a>
-  <a mat-tab-link routerLink="/login" routerLinkActive="mat-tab-active">Logout</a> -->
-</mat-toolbar>
-<mat-menu #menu="matMenu">
-  <button mat-menu-item [routerLink]="['/todo']">My To-Do List</button>
-  <button mat-menu-item [routerLink]="['/explorer']">My Explorer</button>
-  <button mat-menu-item (click)="logout()">Logout</button>
-</mat-menu>
-<router-outlet></router-outlet>
+<div class="flex flex-col min-h-screen bg-gradient-to-r from-custom-gray to-custom-blue">
+  <mat-toolbar>
+    <!-- <div>
+      <span class="block text-lg mb-0">Nathaniel Bass</span>
+      <span class="block text-lg mt-0">Coding Assessment</span>
+    </div> -->
+    <button *ngIf="isLoggedIn" mat-button [matMenuTriggerFor]="menu" class="ml-auto">
+      <mat-icon>menu</mat-icon>
+    </button>
+  </mat-toolbar>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item [routerLink]="['/todo']">My To-Do List</button>
+    <button mat-menu-item [routerLink]="['/explorer']">My Explorer</button>
+    <button mat-menu-item (click)="logout()">Logout</button>
+  </mat-menu>
+  <router-outlet></router-outlet>
+</div>

@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'Nathaniel Bass Quantellia Coding Challenge';
+  title = 'Nathaniel Bass Coding Assessment';
   isLoggedIn = false;
 
   constructor(
@@ -17,7 +17,8 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.authService.isLoggedIn.subscribe((loggedInStatus) => {
-      this.isLoggedIn = loggedInStatus;
+      // this.isLoggedIn = loggedInStatus;
+      this.isLoggedIn = true;
     });
   }
 
