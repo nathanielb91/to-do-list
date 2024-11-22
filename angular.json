@@ -66,10 +66,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "quantellia-assessment:build:production"
+              "buildTarget": "quantellia-assessment:build:production"
             },
             "development": {
-              "browserTarget": "quantellia-assessment:build:development"
+              "buildTarget": "quantellia-assessment:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -77,7 +77,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "quantellia-assessment:build"
+            "buildTarget": "quantellia-assessment:build"
           }
         },
         "test": {
