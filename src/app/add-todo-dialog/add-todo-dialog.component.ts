@@ -4,8 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-add-todo-dialog',
-  templateUrl: './add-todo-dialog.component.html',
-  styleUrls: ['./add-todo-dialog.component.scss']
+  templateUrl: './add-todo-dialog.component.html'
 })
 export class AddTodoDialogComponent {
   todoForm: FormGroup;

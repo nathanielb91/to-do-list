@@ -25,7 +25,7 @@ export class TodoComponent {
     const dialogConfig = {
       width: '500px',
       position: {
-        top: '30%',
+        top: '25%',
       },
     };
     const dialogRef = this.dialog.open(AddTodoDialogComponent, dialogConfig);

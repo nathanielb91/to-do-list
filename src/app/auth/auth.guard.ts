@@ -16,9 +16,8 @@ export const authGuard = () => {
       if (isAuthenticated) {
         return true; // Allow access
       } else {
-        // router.navigate(['/login']);
-        // return false; // Deny access
-        return true;
+        router.navigate(['/login']);
+        return false; // Deny access
       }
     })
   );

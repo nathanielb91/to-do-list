@@ -1,6 +1,5 @@
-export interface TreeNode {
-  id: number,
-  name: string,
-  hasChildren: boolean;
-  children?: TreeNode[];
+export interface Node {
+  id: string;
+  name: string;
+  isFolder: boolean;
 }

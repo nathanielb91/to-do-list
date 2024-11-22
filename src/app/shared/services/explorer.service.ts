@@ -1,28 +1,40 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { delay } from 'rxjs/operators';
+import { Node } from '../models/tree-node.model';
+
+type ExplorerData = {
+  [key: string]: Node[];
+}
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class ExplorerService {
-  private mockData: { [key: string]: { id: string; name: string; isFolder: boolean }[] } = {
-    root: [
-      { id: '1', name: 'Folder 1', isFolder: true },
-      { id: '2', name: 'Folder 2', isFolder: true },
-      { id: '3', name: 'File 1', isFolder: false },
+  private mockData: ExplorerData = {
+    'root': [
+      { id: '1', name: 'Documents', isFolder: true },
+      { id: '2', name: 'Images', isFolder: true },
+      { id: '3', name: 'readme.txt', isFolder: false }
     ],
     '1': [
-      { id: '4', name: 'Subfolder 1', isFolder: true },
-      { id: '5', name: 'File 2', isFolder: false },
+      { id: '4', name: 'Work', isFolder: true },
+      { id: '5', name: 'Personal', isFolder: true }
+    ],
+    '2': [
+      { id: '6', name: 'dog.jpg', isFolder: false },
+      { id: '7', name: 'ocean.png', isFolder: false }
     ],
     '4': [
-      { id: '6', name: 'Subfolder 1.1', isFolder: true },
-      { id: '7', name: 'File 3', isFolder: false },
+      { id: '8', name: 'report.pdf', isFolder: false },
+      { id: '9', name: 'notes.txt', isFolder: false }
     ],
+    '5': [
+      { id: '10', name: 'important-spreadsheet.xlsx', isFolder: false }
+    ]
   };
 
-  fetchData(nodeId: string): Observable<any[]> {
-    const data = this.mockData[nodeId] || [];
-    return of(data);
+  getNodes(nodeId: string): Observable<Node[]> {
+    return of(this.mockData[nodeId] || []).pipe(delay(300)); // Simulate server delay
   }
 }

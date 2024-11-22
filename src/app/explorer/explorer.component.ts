@@ -3,53 +3,32 @@ import { ExplorerService } from '../shared/services/explorer.service';
 
 @Component({
   selector: 'app-explorer',
-  templateUrl: './explorer.component.html',
-  styleUrls: ['./explorer.component.scss'],
+  templateUrl: './explorer.component.html'
 })
 export class ExplorerComponent {
   treeData: any[] = [];
-  loadingNodes: Set<string> = new Set();
 
   constructor(private explorerService: ExplorerService) {}
 
   ngOnInit() {
-    this.loadData('root');
-  }
-
-  loadData(nodeId: string) {
-    if (this.loadingNodes.has(nodeId)) return;
-    this.loadingNodes.add(nodeId);
-
-    this.explorerService.fetchData(nodeId).subscribe((data) => {
-      const parentNode = this.findNode(this.treeData, nodeId);
-      if (parentNode) {
-        parentNode.children = data;
-      } else {
-        this.treeData = data;
-      }
-      this.loadingNodes.delete(nodeId);
+    // Load root level data
+    this.explorerService.getNodes('root').subscribe(data => {
+      this.treeData = data;
     });
   }
 
   toggleNode(node: any) {
     if (!node.isFolder) return;
-
-    if (node.children) {
-      node.expanded = !node.expanded;
+    
+    if (!node.children && !node.expanded) {
+      // Load children only if they haven't been loaded yet
+      this.explorerService.getNodes(node.id).subscribe(data => {
+        node.children = data;
+        node.expanded = true;
+      });
     } else {
-      node.expanded = true;
-      this.loadData(node.id);
+      // Simply toggle if children are already loaded
+      node.expanded = !node.expanded;
     }
-  }
-
-  private findNode(tree: any[], id: string): any | null {
-    for (const node of tree) {
-      if (node.id === id) return node;
-      if (node.children) {
-        const found = this.findNode(node.children, id);
-        if (found) return found;
-      }
-    }
-    return null;
   }
 }

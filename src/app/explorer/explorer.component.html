@@ -1,32 +1,47 @@
-<div class="p-4 bg-gray-50 min-h-screen">
-  <h1 class="text-2xl font-bold mb-4 text-gray-800">Explorer</h1>
-  <ul class="tree">
+<div class="h-[80vh] px-24 py-4 bg-white/15">
+  <div class="text-center text-white text-3xl font-inter font-bold mt-12 mb-24">File Explorer</div>
+  
+  <ul class="space-y-2">
     <ng-container *ngFor="let node of treeData">
       <li>
-        <div
-          class="flex items-center cursor-pointer hover:bg-gray-200 p-2 rounded"
+        <div 
+          class="flex items-center p-2 hover:bg-white/15 rounded cursor-pointer"
           (click)="toggleNode(node)"
         >
-          <mat-icon class="mr-2">
-            {{ node.isFolder ? (node.expanded ? 'folder_open' : 'folder') : 'insert_drive_file' }}
+          <mat-icon class="mr-2" [class.text-amber-500]="node.isFolder">
+            {{node.isFolder ? (node.expanded ? 'folder_open' : 'folder') : 'insert_drive_file'}}
           </mat-icon>
-          <span>{{ node.name }}</span>
+          <span>{{node.name}}</span>
         </div>
-        <ul *ngIf="node.expanded && node.children" class="pl-4">
-          <ng-container *ngFor="let child of node.children">
-            <li>
-              <div
-                class="flex items-center cursor-pointer hover:bg-gray-200 p-2 rounded"
-                (click)="toggleNode(child)"
-              >
-                <mat-icon class="mr-2">
-                  {{ child.isFolder ? (child.expanded ? 'folder_open' : 'folder') : 'insert_drive_file' }}
-                </mat-icon>
-                <span>{{ child.name }}</span>
-              </div>
-              <ul *ngIf="child.expanded && child.children" class="pl-4"></ul>
-            </li>
-          </ng-container>
+        
+        <!-- Children -->
+        <ul *ngIf="node.expanded && node.children" class="ml-8 space-y-2 mt-2">
+          <li *ngFor="let child of node.children">
+            <div 
+              class="flex items-center p-2 hover:bg-white/15 rounded cursor-pointer"
+              (click)="toggleNode(child)"
+            >
+              <mat-icon class="mr-2" [class.text-amber-500]="child.isFolder">
+                {{child.isFolder ? (child.expanded ? 'folder_open' : 'folder') : 'insert_drive_file'}}
+              </mat-icon>
+              <span>{{child.name}}</span>
+            </div>
+            
+            <!-- Nested Children -->
+            <ul *ngIf="child.expanded && child.children" class="ml-8 space-y-2 mt-2">
+              <li *ngFor="let grandChild of child.children">
+                <div 
+                  class="flex items-center p-2 hover:bg-white/15 rounded cursor-pointer"
+                  (click)="toggleNode(grandChild)"
+                >
+                  <mat-icon class="mr-2" [class.text-amber-500]="grandChild.isFolder">
+                    {{grandChild.isFolder ? (grandChild.expanded ? 'folder_open' : 'folder') : 'insert_drive_file'}}
+                  </mat-icon>
+                  <span>{{grandChild.name}}</span>
+                </div>
+              </li>
+            </ul>
+          </li>
         </ul>
       </li>
     </ng-container>

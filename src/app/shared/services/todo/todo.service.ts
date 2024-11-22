@@ -33,13 +33,38 @@ export class TodoService {
   }
 
   toggleTodoCompleted(id: number): void {
-    const todos = this.todosSubject.value.map(todo =>
-      todo.id === id ? { ...todo, completed: !todo.completed } : todo
-    );
-    this.todosSubject.next(this.sortTodos(todos));
+    const todos = this.todosSubject.value;
+    const updatedTodos: TodoItem[] = [];
+    
+    todos.forEach(todo => {
+      if (todo.id === id) {
+        updatedTodos.push({
+          id: todo.id,
+          description: todo.description,
+          completed: !todo.completed
+        });
+      } else {
+        updatedTodos.push(todo);
+      }
+    });
+    
+    this.todosSubject.next(this.sortTodos(updatedTodos));
   }
 
   private sortTodos(todos: TodoItem[]): TodoItem[] {
-    return todos.sort((a, b) => Number(a.completed) - Number(b.completed));
+    const incompleteTodos: TodoItem[] = [];
+    const completedTodos: TodoItem[] = [];
+    
+    todos.forEach(todo => {
+      if (todo.completed) {
+        completedTodos.push(todo);
+      } else {
+        incompleteTodos.push(todo);
+      }
+    });
+    
+    const sortedTodos = [...incompleteTodos, ...completedTodos];
+    
+    return sortedTodos;
   }
 }
